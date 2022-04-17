@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="All rights reserved"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
+
+[[mods]]
+modId="breakthroughthetimebarrier"
+version="${file.jarVersion}"
+displayName="Break Through the Time Barrier"
+#updateJSONURL="https://change.me.example.invalid/updates.json"
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
+#logoFile="examplemod.png"
+credits="The wonderful people on the Forge Discord, who had months worth of chat logs I could scour to find what I needed"
+authors="TwmMeredydd"
+
+description='''
+My attempt at ripping off Back to the Future and creating some sensible port in Minecraft that works for purposes of learning to mod.
+'''
+
+[[dependencies.breakthroughthetimebarrier]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.breakthroughthetimebarrier]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
