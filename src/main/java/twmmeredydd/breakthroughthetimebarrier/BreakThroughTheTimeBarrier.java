@@ -1,6 +1,8 @@
 package twmmeredydd.breakthroughthetimebarrier;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,8 +27,16 @@ public class BreakThroughTheTimeBarrier
     public static final String MOD_ID = "breakthroughthetimebarrier";
     private static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(MOD_ID) {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItems.PLUSTONIUM_ALLOY_VIAL.get());
+        }
+    };
+
     public BreakThroughTheTimeBarrier() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.ITEMS.register(bus);
 
         bus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
