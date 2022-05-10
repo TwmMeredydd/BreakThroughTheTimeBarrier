@@ -1,6 +1,7 @@
 package twmmeredydd.breakthroughthetimebarrier;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -22,10 +23,13 @@ import twmmeredydd.breakthroughthetimebarrier.item.ModItems;
 import java.util.stream.Collectors;
 
 @Mod(BreakThroughTheTimeBarrier.MOD_ID)
-public class BreakThroughTheTimeBarrier
-{
+public class BreakThroughTheTimeBarrier {
     public static final String MOD_ID = "breakthroughthetimebarrier";
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    public static ResourceLocation getRL(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
 
     public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(MOD_ID) {
         @Override
