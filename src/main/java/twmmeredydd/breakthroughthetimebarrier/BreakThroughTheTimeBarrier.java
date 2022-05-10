@@ -4,23 +4,19 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import twmmeredydd.breakthroughthetimebarrier.client.ModClientSetup;
+import twmmeredydd.breakthroughthetimebarrier.entity.ModEntityTypes;
 import twmmeredydd.breakthroughthetimebarrier.item.ModItems;
-
-import java.util.stream.Collectors;
 
 @Mod(BreakThroughTheTimeBarrier.MOD_ID)
 public class BreakThroughTheTimeBarrier {
@@ -41,9 +37,11 @@ public class BreakThroughTheTimeBarrier {
     public BreakThroughTheTimeBarrier() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.ITEMS.register(bus);
+        ModEntityTypes.ENTITY_TYPE_REGISTER.register(bus);
 
         bus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ModClientSetup::init));
     }
 
     private void setup(final FMLCommonSetupEvent event) {
